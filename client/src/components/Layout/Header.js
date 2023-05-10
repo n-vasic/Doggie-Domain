@@ -1,56 +1,49 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { LinkContainer } from 'react-router-bootstrap';
 const Header = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <NavLink to="/" className="navbar-brand" href="#">
-              Hidden brand
-            </NavLink>
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <NavLink
-                  to="/"
-                  className="nav-link active"
-                  aria-current="page"
-                  href="#"
-                >
-                  Home
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/register" className="nav-link" href="#">
-                    Register
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/register" className="nav-link" href="#">
-                    Login
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/register" className="nav-link" href="#">
-                    Cart(0)
-                </NavLink>
-              </li>
-             
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Container fluid>
+          <Navbar.Brand href="#home"><span className='navSpan'>Doggie Domain</span></Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto">
+              <LinkContainer to="/">
+                <Nav.Link href="#features">Home</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/contact">
+                <Nav.Link href="#pricing">Contact</Nav.Link>
+              </LinkContainer>
+              <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">
+                  Another action
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">
+                  Something
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">
+                  Separated link
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+            <Nav>
+              <LinkContainer to="/register">
+                <Nav.Link>Sign Up</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/login">
+                <Nav.Link>login </Nav.Link>
+              </LinkContainer>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </>
   );
 };
