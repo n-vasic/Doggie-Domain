@@ -1,5 +1,19 @@
+@import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Calligraffitti&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Calligraffitti&family=Montserrat&family=Roboto&display=swap');
+
+//font-family: 'Calligraffitti', cursive;
+//font-family: 'Roboto', sans-serif;
+//font-family: 'Montserrat', sans-serif;
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
+
+
+
+
