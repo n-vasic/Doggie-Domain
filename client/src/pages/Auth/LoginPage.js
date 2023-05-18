@@ -6,28 +6,25 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
-const RegisterPage = () => {
-  const [name, setName] = useState('');
+function LoginPage() {
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   //form function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/dd/auth/register', {
-        name,
+      const res = await axios.post('/api/dd/auth/login', {
+        
         email,
-        password,
-        phone,
-        address,
+        password
+       
       });
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
-        navigate('/login');
+        navigate('/');
       } else {
         toast.error(res.data.message);
       }
@@ -39,17 +36,9 @@ const RegisterPage = () => {
   return (
     <Layout>
       <div className="register">
-        <h1 style={{ marginBottom: '10vh' }}>Register Account</h1>
+        <h1 style={{ marginBottom: '10vh' }}>Login</h1>
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicName">
-            <Form.Control
-              type="text"
-              placeholder="Enter your name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </Form.Group>
+         
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control
               type="email"
@@ -68,25 +57,7 @@ const RegisterPage = () => {
               required
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPhone">
-            <Form.Control
-              type="text"
-              placeholder="Enter your phone number"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicAddress">
-            <Form.Control
-              type="text"
-              placeholder="Enter your address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              required
-            />
-          </Form.Group>
-
+          
           <Button variant="primary" type="submit">
             Submit
           </Button>
@@ -94,6 +65,6 @@ const RegisterPage = () => {
       </div>
     </Layout>
   );
-};
+}
 
-export default RegisterPage;
+export default LoginPage;
