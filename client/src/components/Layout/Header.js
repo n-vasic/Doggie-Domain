@@ -1,7 +1,19 @@
 import React from 'react';
 import { Navbar, Nav, Container, Col, Row } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { useAuth } from '../../context/auth';
+import toast from 'react-hot-toast';
 const Header = () => {
+  const [auth, setAuth] = useAuth();
+  const handleLogout = () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: '',
+    });
+    localStorage.removeItem('auth');
+    toast.success("Logout successfull")
+  };
   return (
     <>
       <Container className="preHeader" fluid>
@@ -24,12 +36,22 @@ const Header = () => {
                     <LinkContainer to="/blog">
                       <Nav.Link>Blog </Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to="/register">
-                      <Nav.Link>Register</Nav.Link>
-                    </LinkContainer>
-                    <LinkContainer to="/login">
-                      <Nav.Link>Login</Nav.Link>
-                    </LinkContainer>
+                    {!auth.user ? (
+                      <>
+                        <LinkContainer to="/register">
+                          <Nav.Link>Register</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to="/login">
+                          <Nav.Link>Login</Nav.Link>
+                        </LinkContainer>
+                      </>
+                    ) : (
+                      <>
+                        <LinkContainer to="/login">
+                          <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                        </LinkContainer>
+                      </>
+                    )}
                     <LinkContainer to="/cart">
                       <Nav.Link>Cart(0)</Nav.Link>
                     </LinkContainer>
