@@ -5,11 +5,12 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { useAuth } from '../../context/auth';
 
 function LoginPage() {
-  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [auth, setAuth] = useAuth();
 
   const navigate = useNavigate();
   //form function
@@ -17,13 +18,16 @@ function LoginPage() {
     e.preventDefault();
     try {
       const res = await axios.post('/api/dd/auth/login', {
-        
         email,
-        password
-       
+        password,
       });
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
         navigate('/');
       } else {
         toast.error(res.data.message);
@@ -38,7 +42,6 @@ function LoginPage() {
       <div className="register">
         <h1 style={{ marginBottom: '10vh' }}>Login</h1>
         <Form onSubmit={handleSubmit}>
-         
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control
               type="email"
@@ -57,7 +60,7 @@ function LoginPage() {
               required
             />
           </Form.Group>
-          
+
           <Button variant="primary" type="submit">
             Submit
           </Button>
