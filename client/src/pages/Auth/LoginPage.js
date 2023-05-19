@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import {toast} from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 
 import Layout from '../../components/Layout/Layout';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-import { useNavigate,useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { useAuth } from '../../context/auth';
 
@@ -64,6 +64,17 @@ function LoginPage() {
               required
             />
           </Form.Group>
+          <div className="mb-3">
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={() => {
+                navigate('/forgot-password');
+              }}
+            >
+              Forgot Password
+            </Button>  
+          </div>
 
           <Button variant="primary" type="submit">
             Submit

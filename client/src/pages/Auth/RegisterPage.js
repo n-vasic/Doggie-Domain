@@ -12,6 +12,8 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
+  const [answer, setAnswer] = useState('');
+
   const navigate = useNavigate();
 
   //form function
@@ -24,6 +26,7 @@ const RegisterPage = () => {
         password,
         phone,
         address,
+        answer
       });
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
@@ -83,6 +86,15 @@ const RegisterPage = () => {
               placeholder="Enter your address"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicAnswer">
+            <Form.Control
+              type="text"
+              placeholder="Whats Is Your Favourite Sport?"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
               required
             />
           </Form.Group>
