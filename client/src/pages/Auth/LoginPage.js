@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import {toast} from 'react-hot-toast';
+
 import Layout from '../../components/Layout/Layout';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { useNavigate,useLocation } from 'react-router-dom';
+
 import { useAuth } from '../../context/auth';
 
 function LoginPage() {
@@ -13,6 +15,7 @@ function LoginPage() {
   const [auth, setAuth] = useAuth();
 
   const navigate = useNavigate();
+  const location = useLocation();
   //form function
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +32,7 @@ function LoginPage() {
           token: res.data.token,
         });
         localStorage.setItem('auth', JSON.stringify(res.data));
-        navigate('/');
+        navigate(location.state || '/');
       } else {
         toast.error(res.data.message);
       }

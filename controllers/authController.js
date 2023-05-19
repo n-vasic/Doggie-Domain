@@ -28,7 +28,7 @@ export const registerController = async (req, res) => {
     if (existingUser) {
       return res.status(200).send({
         success: false,
-        mesagge: 'You are already registered, please login',
+        message: 'You are already registered, please login',
       });
     }
 
@@ -51,7 +51,7 @@ export const registerController = async (req, res) => {
     console.log(error);
     res.status(500).send({
       success: false,
-      mesagge: 'Error While Registering',
+      message: 'Error While Registering',
       error,
     });
   }
