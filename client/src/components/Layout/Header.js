@@ -3,6 +3,10 @@ import { Navbar, Nav, Container, Col, Row } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useAuth } from '../../context/auth';
 import toast from 'react-hot-toast';
+import Dropdown from 'react-bootstrap/Dropdown';
+import { NavLink } from 'react-router-dom';
+import Dashboard from './../../pages/user/Dashboard';
+
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const handleLogout = () => {
@@ -12,7 +16,7 @@ const Header = () => {
       token: '',
     });
     localStorage.removeItem('auth');
-    toast.success("Logout successfull")
+    toast.success('Logout successfull');
   };
   return (
     <>
@@ -47,9 +51,32 @@ const Header = () => {
                       </>
                     ) : (
                       <>
-                        <LinkContainer to="/login">
-                          <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
-                        </LinkContainer>
+                        <Dropdown>
+                          <Dropdown.Toggle
+                            variant="custom "
+                            id="dropdown-basic"
+                            style={{
+                              fontFamily: 'sans-serif',
+                              fontSize: '1.4vw',
+                              textTransform: 'uppercase',
+                              fontWeight: 'bold',
+                              color:"orangered"
+                            }}
+                          >
+                            {auth?.user?.name}
+                          </Dropdown.Toggle>
+
+                          <Dropdown.Menu>
+                            <Dropdown.Item>
+                              <NavLink to="/dashboard">Dashboard</NavLink>
+                            </Dropdown.Item>
+                            <Dropdown.Item>
+                              <NavLink to="/login" onClick={handleLogout}>
+                                Logout
+                              </NavLink>
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
                       </>
                     )}
                     <LinkContainer to="/cart">
