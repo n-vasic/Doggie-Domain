@@ -59,7 +59,7 @@ const Header = () => {
                               fontSize: '1.4vw',
                               textTransform: 'uppercase',
                               fontWeight: 'bold',
-                              color:"orangered"
+                              color: 'orangered',
                             }}
                           >
                             {auth?.user?.name}
@@ -67,7 +67,13 @@ const Header = () => {
 
                           <Dropdown.Menu>
                             <Dropdown.Item>
-                              <NavLink to="/dashboard">Dashboard</NavLink>
+                              <NavLink
+                                to={`/dashboard/${
+                                  auth?.user?.role === 1 ? 'admin' : 'user'
+                                }`}
+                              >
+                                Dashboard
+                              </NavLink>
                             </Dropdown.Item>
                             <Dropdown.Item>
                               <NavLink to="/login" onClick={handleLogout}>
