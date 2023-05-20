@@ -3,12 +3,13 @@ import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
 import {
   CreateCategoryController,
   categoryController,
+  singleCategoryController,
   updateCategoryController,
 } from '../controllers/categoryController.js';
 
 const router = express.Router();
 
-//routes
+// ROUTES //
 
 //CREATE CATEGORY || POST
 router.post(
@@ -28,6 +29,11 @@ router.put(
 );
 
 //ALL CATEGORIES || GET
+
 router.get('/get-category', categoryController);
+
+//SINGLE CATEGORIE || GET
+
+router.get('/single-category/:slug', singleCategoryController)
 
 export default router;
