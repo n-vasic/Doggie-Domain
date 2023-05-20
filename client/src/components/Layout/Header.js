@@ -5,7 +5,6 @@ import { useAuth } from '../../context/auth';
 import toast from 'react-hot-toast';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { NavLink } from 'react-router-dom';
-import Dashboard from './../../pages/user/Dashboard';
 
 const Header = () => {
   const [auth, setAuth] = useAuth();

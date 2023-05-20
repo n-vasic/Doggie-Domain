@@ -2,10 +2,8 @@ import React from 'react';
 import Layout from '../components/Layout/Layout';
 import { Container } from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
-import {useAuth} from '../context/auth';
 
 const HomePage = () => {
-  const [auth,setAuth]=useAuth();
   return (
     <Layout>
       <Container fluid className="homepageSlika">
@@ -18,7 +16,6 @@ const HomePage = () => {
           <NavLink to="/shop" className="homepageBtn">GET STARTED</NavLink>
         </div>
       </Container>
-      <pre>{JSON.stringify(auth,null,4)}</pre>
     </Layout>
     
   );
