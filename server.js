@@ -4,8 +4,8 @@ import connectDB from './config/db.js';
 import morgan from 'morgan';
 import colors from 'colors';
 import authRoutes from './routes/authRoute.js';
+import categoryRoute from './routes/categoryRoute.js';
 import cors from 'cors';
-
 
 //env config
 dotenv.config();
@@ -19,10 +19,11 @@ const app = express();
 //middlewears
 app.use(cors());
 app.use(express.json());
-app.use(morgan('dev'))
+app.use(morgan('dev'));
 
 //routes
 app.use('/api/dd/auth', authRoutes);
+app.use('/api/dd/category', categoryRoute);
 
 //rest api
 app.get('/', (req, res) => {
