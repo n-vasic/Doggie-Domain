@@ -2,6 +2,7 @@ import productModel from '../models/productModel.js';
 import fs from 'fs';
 import slugify from 'slugify';
 
+//CREATE PRODUCT
 export const createProductController = async (req, res) => {
   try {
     const { name, slug, description, price, category, quantity, shipping } =
@@ -26,7 +27,7 @@ export const createProductController = async (req, res) => {
     }
     const products = new productModel({
       ...req.fields,
-      slug: slugify( name ),
+      slug: slugify(name),
     });
     if (photo) {
       products.photo.data = fs.readFileSync(photo.path);
@@ -44,6 +45,30 @@ export const createProductController = async (req, res) => {
       success: false,
       error,
       message: 'Error while creating product',
+    });
+  }
+};
+
+//GET ALL PRODUCTS
+export const getProductsController = async (req, res) => {
+  try {
+    const products = await productModel
+      .find({})
+      .select('-photo')
+      .limit(12)
+      .sort({ createdAt: -1 });
+    res.status(200).send({
+      success: true,
+      countTotal: products.length,
+      message: 'Got all products successfully',
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.stauts(500).send({
+      success: false,
+      message: 'Error while getting products',
+      error: error.message,
     });
   }
 };
