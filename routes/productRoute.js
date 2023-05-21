@@ -2,9 +2,11 @@ import express from 'express';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
 import {
   createProductController,
+  deleteProductController,
   getProductsController,
   getSingleProductController,
   productPhotoController,
+  updateProductController,
 } from '../controllers/productController.js';
 import formidable from 'express-formidable';
 
@@ -30,4 +32,15 @@ router.get('/get-product/:slug', getSingleProductController);
 //GET PHOTO || GET
 router.get('/product-photo/:pid', productPhotoController);
 
+//DELETE PRODUCT || DELETE
+router.delete('/product/:pid', deleteProductController)
+
+//UPDATE PRODUCT || PUT
+router.put(
+    '/update-product/:pid',
+    requireSignIn,
+    isAdmin,
+    formidable(),
+    updateProductController
+  );
 export default router;
