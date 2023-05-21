@@ -6,10 +6,10 @@ import {
   forgotPasswordController,
 } from '../controllers/authController.js';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
-//router object
+// ROUTER OBJECT  //
 const router = express.Router();
 
-//routing
+// ROUTING //
 
 //REGISTER || POST
 router.post('/register', registerController);
@@ -20,14 +20,14 @@ router.post('/login', loginController);
 //FORGOT PASSWORD || POST
 router.post('/forgot-password', forgotPasswordController);
 
-//test route
+//TEST ROUTE 
 router.get('/test', requireSignIn, isAdmin, testController);
 
-//protected user route auth
+//PROTECTED USER ROUTE AUTH  
 router.get('/user-auth', requireSignIn, (req, res) => {
   res.status(200).send({ ok: true });
 });
-//protected admin route auth
+//PROTECTED ADMIN ROUTE AUTH 
 router.get('/admin-auth', requireSignIn, isAdmin, (req, res) => {
   res.status(200).send({ ok: true });
 });

@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import colors from 'colors';
 import authRoutes from './routes/authRoute.js';
 import categoryRoute from './routes/categoryRoute.js';
+import productRoute from './routes/productRoute.js';
 import cors from 'cors';
 
 //env config
@@ -24,6 +25,7 @@ app.use(morgan('dev'));
 //routes
 app.use('/api/dd/auth', authRoutes);
 app.use('/api/dd/category', categoryRoute);
+app.use("/api/dd/product", productRoute);
 
 //rest api
 app.get('/', (req, res) => {
