@@ -59,27 +59,50 @@ const Header = () => {
                               fontSize: '1.4vw',
                               textTransform: 'uppercase',
                               fontWeight: 'bold',
-                              color: 'orangered',
+                              color: '#e8872f',
                             }}
                           >
                             {auth?.user?.name}
                           </Dropdown.Toggle>
 
                           <Dropdown.Menu>
-                            <Dropdown.Item>
-                              <NavLink
+                            <Dropdown.Item as={Nav.Item}>
+                              <Nav.Link
+                                as={NavLink}
                                 to={`/dashboard/${
                                   auth?.user?.role === 1 ? 'admin' : 'user'
                                 }`}
                               >
                                 Dashboard
-                              </NavLink>
+                              </Nav.Link>
+                            </Dropdown.Item>
+                            <Dropdown.Item as={Nav.Item}>
+                              <Nav.Link
+                                as={NavLink}
+                                to="/login"
+                                onClick={handleLogout}
+                              >
+                                Logout
+                              </Nav.Link>
+                            </Dropdown.Item>
+                            {/* <Dropdown.Item>
+                              <div>
+                                <NavLink
+                                  to={`/dashboard/${
+                                    auth?.user?.role === 1 ? 'admin' : 'user'
+                                  }`}
+                                >
+                                  Dashboard
+                                </NavLink>
+                              </div>
                             </Dropdown.Item>
                             <Dropdown.Item>
-                              <NavLink to="/login" onClick={handleLogout}>
-                                Logout
-                              </NavLink>
-                            </Dropdown.Item>
+                              <div>
+                                <NavLink to="/login" onClick={handleLogout}>
+                                  Logout
+                                </NavLink>
+                              </div>
+                            </Dropdown.Item> */}
                           </Dropdown.Menu>
                         </Dropdown>
                       </>
