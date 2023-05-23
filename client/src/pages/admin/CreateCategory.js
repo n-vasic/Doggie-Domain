@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../../components/Layout/Layout';
-import { Col, Row, Container } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import AdminMenu from '../../components/Layout/AdminMenu';
 import toast from 'react-hot-toast';
 import axios from 'axios';
@@ -35,8 +35,8 @@ const CreateCategory = () => {
   const getAllCategories = async () => {
     try {
       const { data } = await axios.get('/api/dd/category/get-category');
-      if (data.success) {
-        setCategories(data.category);
+      if (data?.success) {
+        setCategories(data?.category);
       }
     } catch (error) {
       console.log(error);
@@ -90,12 +90,13 @@ const CreateCategory = () => {
   };
   return (
     <Layout>
-      <h1 className="text-center mt-4 mb-4">Manage categories</h1>
+      
       <Row style={{ width: '100%' }}>
         <Col md={3}>
           <AdminMenu></AdminMenu>
         </Col>
         <Col md={9} className='p-3'>
+        <h1 className="text-center">Manage categories</h1>
           <div>
             <CategoryForm
               handleSubmit={handleSubmit}
