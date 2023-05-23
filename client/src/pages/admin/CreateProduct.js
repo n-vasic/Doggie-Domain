@@ -6,16 +6,13 @@ import AdminMenu from '../../components/Layout/AdminMenu';
 const CreateProduct = () => {
   return (
     <Layout>
-      <Container fluid className="m-3 p-3">
-        <Row>
-          <Col md={3}>
-            <AdminMenu></AdminMenu>
-          </Col>
-          <Col md={9}>
-            <h1>Create Product</h1>
-          </Col>
-        </Row>
-      </Container>
+      <h1 className="text-center mt-4 mb-4">Create Product</h1>
+      <Row style={{ width: '100%' }}>
+        <Col md={3}>
+          <AdminMenu></AdminMenu>
+        </Col>
+        <Col md={9}></Col>
+      </Row>
     </Layout>
   );
 };

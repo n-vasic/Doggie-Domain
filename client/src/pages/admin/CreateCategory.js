@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../../components/Layout/Layout';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Row, Container } from 'react-bootstrap';
 import AdminMenu from '../../components/Layout/AdminMenu';
 import toast from 'react-hot-toast';
 import axios from 'axios';
@@ -90,71 +90,75 @@ const CreateCategory = () => {
   };
   return (
     <Layout>
-      <Container fluid className="m-3 p-3">
-        <Row>
-          <Col md={3}>
-            <AdminMenu></AdminMenu>
-          </Col>
-          <Col md={9} className='createCatRight'>
-            <h1>Manage categories</h1>
-            <div>
-              <CategoryForm
-                handleSubmit={handleSubmit}
-                value={name}
-                setValue={setName}
-              />
-            </div>
-            <div>
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {categories?.map((c) => (
-                    <tr key={c._id}>
-                      <td>{c.name}</td>
-                      <td className="button-container">
-                        <button
-                          className="btn btn-primary ms-2"
-                          onClick={() => {
-                            setVisible(true);
-                            setUpdatedName(c.name);
-                            setSelected(c);
-                          }}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="btn btn-danger ms-2 "
-                          onClick={() => {
-                            handleDelete(c._id);
-                          }}
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <Modal
-              onCancel={() => setVisible(false)}
-              footer={null}
-              open={visible}
+      <h1 className="text-center mt-4 mb-4">Manage categories</h1>
+      <Row style={{ width: '100%' }}>
+        <Col md={3}>
+          <AdminMenu></AdminMenu>
+        </Col>
+        <Col md={9} className='p-3'>
+          <div>
+            <CategoryForm
+              handleSubmit={handleSubmit}
+              value={name}
+              setValue={setName}
+            />
+          </div>
+          <div>
+          <table className="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Actions</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {categories?.map((c) => (
+      <tr key={c._id}>
+        <td>{c.name}</td>
+        <td className="d-flex justify-content-between align-items-center">
+          <div>
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                setVisible(true);
+                setUpdatedName(c.name);
+                setSelected(c);
+              }}
             >
-              <CategoryForm
-                value={updatedName}
-                setValue={setUpdatedName}
-                handleSubmit={handleUpdate}
-              />
-            </Modal>
-          </Col>
-        </Row>
-      </Container>
+              Edit
+            </button>
+          </div>
+          <div>
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                handleDelete(c._id);
+              }}
+            >
+              Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+          </div>
+          <Modal
+            onCancel={() => setVisible(false)}
+            footer={null}
+            open={visible}
+          >
+            <CategoryForm
+              value={updatedName}
+              setValue={setUpdatedName}
+              handleSubmit={handleUpdate}
+            />
+          </Modal>
+        </Col>
+      </Row>
     </Layout>
   );
 };

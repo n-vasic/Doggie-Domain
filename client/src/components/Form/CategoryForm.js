@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 const CategoryForm = ({ handleSubmit, value, setValue }) => {
   return (
     <div className="p-3">
-      <Form style={{width:"60vw"}} onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicText">
           <Form.Control
             type="text"

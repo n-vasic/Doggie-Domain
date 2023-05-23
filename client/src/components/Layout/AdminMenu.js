@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const AdminMenu = () => {
   return (
     <>
-      <div className="text-center m-3 p-3">
+      <div className="text-center p-3">
         <div className="list-group">
           <h4>Admin Panel</h4>
           <NavLink
@@ -18,7 +18,7 @@ const AdminMenu = () => {
             to="/dashboard/admin/create-product"
             className="list-group-item list-group-item-action"
           >
-            Create Prodcut
+            Create Product
           </NavLink>
           <NavLink
             to="/dashboard/admin/users"
