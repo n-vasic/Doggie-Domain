@@ -1,16 +1,14 @@
 import React from 'react';
 import Layout from '../components/Layout/Layout';
-import { Container, Row, Col, Button, Image } from 'react-bootstrap';
+import { Row, Col, Button, Image } from 'react-bootstrap';
 import { useAuth } from '../context/auth';
 import { useCart } from '../context/cart';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-
+import { useNavigate } from 'react-router-dom';
 const CartPage = () => {
   const [auth, setAuth] = useAuth();
   const [cart, setCart] = useCart();
   const navigate = useNavigate();
-
   //TOTAL PRICE
   const totalPrice = () => {
     try {
@@ -34,7 +32,7 @@ const CartPage = () => {
       myCart.splice(index, 1);
       setCart(myCart);
       localStorage.setItem('cart', JSON.stringify(myCart));
-      toast.success("Product Successfully Removed From Cart")
+      toast.success('Product Successfully Removed From Cart');
     } catch (error) {
       console.log(error);
     }
@@ -57,8 +55,12 @@ const CartPage = () => {
       </Row>
       <Row style={{ maxWidth: '100%' }}>
         <Col md={9}>
-          {cart?.map((p) => (
-            <Row style={{ maxWidth: '100%' }} className="card  m-3 flex-row">
+          {cart?.map((p, index) => (
+            <Row
+              style={{ maxWidth: '100%' }}
+              className="card  m-3 flex-row"
+              key={`${p._id}-${index}`}
+            >
               <Col md={4} className="d-flex justify-content-center">
                 <Image
                   className="card-img"
@@ -87,6 +89,35 @@ const CartPage = () => {
           <p> Total | Checkout | Payment </p>
           <hr />
           <h4>Total : {totalPrice()} </h4>
+          {auth?.user?.address ? (
+            <>
+              <div className="mb-3">
+                <h4>Current Address</h4>
+                <h5>{auth?.user?.address}</h5>
+                <Button onClick={() => navigate('/dashboard/user/profile')}>
+                  Update Address
+                </Button>
+              </div>
+            </>
+          ) : (
+            <div>
+              {auth?.token ? (
+                <Button
+                  onClick={() => navigate('/dashboard/user/profile')}
+                ></Button>
+              ) : (
+                <Button
+                  onClick={() =>
+                    navigate('/login', {
+                      state: '/cart',
+                    })
+                  }
+                >
+                  Please Login To Checkout
+                </Button>
+              )}
+            </div>
+          )}
         </Col>
       </Row>
     </Layout>
