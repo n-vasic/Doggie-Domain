@@ -5,6 +5,7 @@ import {
   deleteProductController,
   getProductsController,
   getSingleProductController,
+  productFiltersController,
   productPhotoController,
   updateProductController,
 } from '../controllers/productController.js';
@@ -33,14 +34,20 @@ router.get('/get-product/:slug', getSingleProductController);
 router.get('/product-photo/:pid', productPhotoController);
 
 //DELETE PRODUCT || DELETE
-router.delete('/delete-product/:pid', deleteProductController)
+router.delete('/delete-product/:pid', deleteProductController);
 
 //UPDATE PRODUCT || PUT
 router.put(
-    '/update-product/:pid',
-    requireSignIn,
-    isAdmin,
-    formidable(),
-    updateProductController
-  );
+  '/update-product/:pid',
+  requireSignIn,
+  isAdmin,
+  formidable(),
+  updateProductController
+);
+
+//FILTER PRODUCTS || POST
+router.post('/product-filters', productFiltersController)
+
+
+
 export default router;

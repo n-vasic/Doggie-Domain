@@ -34,7 +34,7 @@ const Products = () => {
         </Col>
         <Col md={9}>
           <h1 className="text-center mb-4">All Products List</h1>
-          <div className="d-flex justify-content-center">
+          <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <Link
                 key={p._id}
@@ -46,7 +46,6 @@ const Products = () => {
                     variant="top"
                     src={`/api/dd/product/product-photo/${p._id}`}
                     alt={p.name}
-                    style={{ maxHeight: '200px' }}
                   />
                   <Card.Body>
                     <Card.Title>{p.name}</Card.Title>
