@@ -137,7 +137,6 @@ function ShopPage() {
           </div>
         </Col>
         <Col md={9}>
-          {/* {JSON.stringify(radio, null, 4)} */}
           <h1 className="text-center">All Products</h1>
           <div className="d-flex flex-wrap justify-content-center">
             {products?.map((p) => (

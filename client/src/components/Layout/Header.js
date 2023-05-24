@@ -1,13 +1,14 @@
 import React from 'react';
-import { Navbar, Nav, Container, Col, Row } from 'react-bootstrap';
+import { Navbar, Nav, Container, Col, Row, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useAuth } from '../../context/auth';
 import toast from 'react-hot-toast';
-import Dropdown from 'react-bootstrap/Dropdown';
 import { NavLink } from 'react-router-dom';
+import useCategory from '../../hooks/useCategory';
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const categories = useCategory();
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -36,10 +37,16 @@ const Header = () => {
                     <LinkContainer to="/shop">
                       <Nav.Link>Shop </Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to="/blog">
-                      <Nav.Link>Blog </Nav.Link>
-                    </LinkContainer>
-                    
+                    <NavDropdown title="Categories" id="categories-dropdown">
+                      <LinkContainer to="/categories">
+                        <NavDropdown.Item>All Categories</NavDropdown.Item>
+                      </LinkContainer>
+                      {categories?.map((c) => (
+                        <LinkContainer to={`/category/${c.slug}`} key={c._id}>
+                          <NavDropdown.Item>{c.name}</NavDropdown.Item>
+                        </LinkContainer>
+                      ))}
+                    </NavDropdown>
                     {!auth.user ? (
                       <>
                         <LinkContainer to="/register">
@@ -51,61 +58,30 @@ const Header = () => {
                       </>
                     ) : (
                       <>
-                        <Dropdown>
-                          <Dropdown.Toggle
-                            variant="custom "
-                            id="dropdown-basic"
-                            style={{
-                              fontFamily: 'sans-serif',
-                              fontSize: '1.4vw',
-                              textTransform: 'uppercase',
-                              fontWeight: 'bold',
-                              color: '#e8872f',
-                            }}
-                          >
-                            {auth?.user?.name}
-                          </Dropdown.Toggle>
-
-                          <Dropdown.Menu>
-                            <Dropdown.Item as={Nav.Item}>
-                              <Nav.Link
-                                as={NavLink}
-                                to={`/dashboard/${
-                                  auth?.user?.role === 1 ? 'admin' : 'user'
-                                }`}
-                              >
-                                Dashboard
-                              </Nav.Link>
-                            </Dropdown.Item>
-                            <Dropdown.Item as={Nav.Item}>
-                              <Nav.Link
-                                as={NavLink}
-                                to="/login"
-                                onClick={handleLogout}
-                              >
-                                Logout
-                              </Nav.Link>
-                            </Dropdown.Item>
-                            {/* <Dropdown.Item>
-                              <div>
-                                <NavLink
-                                  to={`/dashboard/${
-                                    auth?.user?.role === 1 ? 'admin' : 'user'
-                                  }`}
-                                >
-                                  Dashboard
-                                </NavLink>
-                              </div>
-                            </Dropdown.Item>
-                            <Dropdown.Item>
-                              <div>
-                                <NavLink to="/login" onClick={handleLogout}>
-                                  Logout
-                                </NavLink>
-                              </div>
-                            </Dropdown.Item> */}
-                          </Dropdown.Menu>
-                        </Dropdown>
+                        <NavDropdown
+                          title={auth?.user?.name}
+                          id="dropdown-basic"
+                        >
+                          <NavDropdown.Item as={Nav.Item}>
+                            <Nav.Link
+                              as={NavLink}
+                              to={`/dashboard/${
+                                auth?.user?.role === 1 ? 'admin' : 'user'
+                              }`}
+                            >
+                              Dashboard
+                            </Nav.Link>
+                          </NavDropdown.Item>
+                          <NavDropdown.Item as={Nav.Item}>
+                            <Nav.Link
+                              as={NavLink}
+                              to="/login"
+                              onClick={handleLogout}
+                            >
+                              Logout
+                            </Nav.Link>
+                          </NavDropdown.Item>
+                        </NavDropdown>
                       </>
                     )}
                     <LinkContainer to="/cart">

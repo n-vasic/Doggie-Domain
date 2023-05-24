@@ -1,4 +1,5 @@
 import productModel from '../models/productModel.js';
+import categoryModel from '../models/categoryModel.js';
 import fs from 'fs';
 import slugify from 'slugify';
 
@@ -101,16 +102,16 @@ export const getSingleProductController = async (req, res) => {
 
 export const productPhotoController = async (req, res) => {
   try {
-    const product = await productModel.findById(req.params.pid).select("photo");
+    const product = await productModel.findById(req.params.pid).select('photo');
     if (product.photo.data) {
-      res.set("Content-type", product.photo.contentType);
+      res.set('Content-type', product.photo.contentType);
       return res.status(200).send(product.photo.data);
     }
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "error while getting photo",
+      message: 'error while getting photo',
       error,
     });
   }
@@ -257,17 +258,17 @@ export const searchProductController = async (req, res) => {
     const results = await productModel
       .find({
         $or: [
-          { name: { $regex: keyword, $options: "i" } },
-          { description: { $regex: keyword, $options: "i" } },
+          { name: { $regex: keyword, $options: 'i' } },
+          { description: { $regex: keyword, $options: 'i' } },
         ],
       })
-      .select("-photo");
+      .select('-photo');
     res.json(results);
   } catch (error) {
     console.log(error);
     res.status(400).send({
       success: false,
-      message: "Error In Search Product API",
+      message: 'Error In Search Product API',
       error,
     });
   }
@@ -283,9 +284,9 @@ export const realtedProductController = async (req, res) => {
         category: cid,
         _id: { $ne: pid },
       })
-      .select("-photo")
+      .select('-photo')
       .limit(3)
-      .populate("category");
+      .populate('category');
     res.status(200).send({
       success: true,
       products,
@@ -294,17 +295,17 @@ export const realtedProductController = async (req, res) => {
     console.log(error);
     res.status(400).send({
       success: false,
-      message: "error while geting related product",
+      message: 'error while geting related product',
       error,
     });
   }
 };
 
-// get prdocyst by catgory
+// GET PRODUCTS BY CATEGORY
 export const productCategoryController = async (req, res) => {
   try {
     const category = await categoryModel.findOne({ slug: req.params.slug });
-    const products = await productModel.find({ category }).populate("category");
+    const products = await productModel.find({ category }).populate('category');
     res.status(200).send({
       success: true,
       category,
@@ -315,7 +316,7 @@ export const productCategoryController = async (req, res) => {
     res.status(400).send({
       success: false,
       error,
-      message: "Error While Getting products",
+      message: 'Error While Getting products',
     });
   }
 };

@@ -13,7 +13,7 @@ const AdminDashboard = () => {
           <Col md={3}>
             <AdminMenu></AdminMenu>
           </Col>
-          <Col md={9} >
+          <Col md={9}  >
             <Card >
               <h3>Admin Name : {auth?.user?.name}</h3>
               <h3>Admin Email : {auth?.user?.email}</h3>

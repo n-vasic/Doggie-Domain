@@ -16,7 +16,6 @@ import {
   
 } from '../controllers/productController.js';
 import formidable from 'express-formidable';
-import { get } from 'mongoose';
 
 const router = express.Router();
 
@@ -64,10 +63,10 @@ router.get('/product-list/:page',productListController)
 //SEARCH PRODUCTS || GET
 router.get('/search/:keyword',searchProductController)
 
-//similar product
+//SIMILAR PRODUCT
 router.get("/related-product/:pid/:cid", realtedProductController);
 
-//category wise product
+//PRODUCTS FROM CATEOGRY
 router.get("/product-category/:slug", productCategoryController);
 
 export default router;
