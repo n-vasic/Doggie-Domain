@@ -9,6 +9,9 @@ function ShopPage() {
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   //GET ALL CATEGORIES
   const getAllCategories = async () => {
@@ -21,20 +24,52 @@ function ShopPage() {
       console.log(error);
     }
   };
+  //GET TOTAL COUNT
+  const getTotal = async () => {
+    try {
+      const { data } = await axios.get('/api/dd/product/product-count');
+      setTotal(data?.total);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     getAllCategories();
+    getTotal();
   }, []);
 
   //GET ALL PRODUCTS
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get('/api/dd/product/get-product');
+      setLoading(true);
+      const { data } = await axios.get(`/api/dd/product/product-list/${page}`);
+      setLoading(false);
       setProducts(data.products);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (page === 1) return;
+    loadMore();
+  }, [page]);
+
+  //LOAD MORE PRODUCTS
+  const loadMore = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(`/api/dd/product/product-list/${page}`);
+      setLoading(false);
+      setProducts([...products, ...data?.products]);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
   //FILTER BY CATEGORY
   const handleFilter = (value, id) => {
     let all = [...checked];
@@ -92,9 +127,10 @@ function ShopPage() {
             </Radio.Group>
           </div>
           <div className="d-flex flex-column">
-            <Button onClick={()=>window.location.reload()}>RESET FILTERS</Button>
+            <Button onClick={() => window.location.reload()}>
+              RESET FILTERS
+            </Button>
           </div>
-
         </Col>
         <Col md={9}>
           {/* {JSON.stringify(radio, null, 4)} */}
@@ -123,6 +159,18 @@ function ShopPage() {
                 </Card.Body>
               </Card>
             ))}
+          </div>
+          <div className="m-2 p-3">
+            {products && products.length < total && (
+              <Button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage(page + 1);
+                }}
+              >
+                {loading ? 'Loading...' : 'Load more'}
+              </Button>
+            )}
           </div>
         </Col>
       </Row>
