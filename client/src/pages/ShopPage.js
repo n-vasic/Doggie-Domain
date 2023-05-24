@@ -4,6 +4,7 @@ import { Button, Card, Col, Row } from 'react-bootstrap';
 import axios from 'axios';
 import { Checkbox, Radio } from 'antd';
 import { Prices } from '../components/Prices';
+import SearchInput from '../components/Form/SearchInput';
 function ShopPage() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -104,6 +105,7 @@ function ShopPage() {
     <Layout>
       <Row style={{ maxWidth: '100%' }} className="m-3">
         <Col md={3}>
+          <SearchInput />
           <h4 className="mb-4">Filter By Category</h4>
           <div className="d-flex flex-column">
             {categories?.map((c) => (

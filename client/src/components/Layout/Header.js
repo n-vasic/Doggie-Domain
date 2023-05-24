@@ -39,6 +39,7 @@ const Header = () => {
                     <LinkContainer to="/blog">
                       <Nav.Link>Blog </Nav.Link>
                     </LinkContainer>
+                    
                     {!auth.user ? (
                       <>
                         <LinkContainer to="/register">

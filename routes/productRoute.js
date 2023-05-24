@@ -9,9 +9,12 @@ import {
   productPhotoController,
   updateProductController,
   productCountController,
-  productListController
+  productListController,
+  searchProductController,
+  
 } from '../controllers/productController.js';
 import formidable from 'express-formidable';
+import { get } from 'mongoose';
 
 const router = express.Router();
 
@@ -55,5 +58,8 @@ router.get('/product-count', productCountController)
 
 //PRODUCTS PER PAGE || GET
 router.get('/product-list/:page',productListController)
+
+//SEARCH PRODUCTS || GET
+router.get('/search/:keyword',searchProductController)
 
 export default router;
