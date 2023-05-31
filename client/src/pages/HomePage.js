@@ -16,6 +16,12 @@ const HomePage = () => {
           <NavLink to="/shop" className="homepageBtn">GET STARTED</NavLink>
         </div>
       </Container>
+      <p className='smallerScreensText'>
+            Welcome to Doggie Domain, your ultimate online dog shop! We offer a
+            wide range of carefully curated products to keep your pup happy,
+            healthy, and stylish.
+          </p>
+          <NavLink to="/shop" className="smallerScreensHomepageBtn ">GET STARTED</NavLink>
     </Layout>
     
   );

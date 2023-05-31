@@ -64,7 +64,7 @@ function LoginPage() {
               required
             />
           </Form.Group>
-          <div className="mb-3">
+          <div className="mb-3 forgot-password" >
             <Button
               variant="primary"
               type="submit"

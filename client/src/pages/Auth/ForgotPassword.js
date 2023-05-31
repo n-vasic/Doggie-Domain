@@ -34,9 +34,9 @@ const ForgotPasssword = () => {
   };
   return (
     <Layout >
-      <div className="form-container ">
+      <div className="form-container w-50 m-auto mt-5">
         <form onSubmit={handleSubmit}>
-          <h4 className="title">RESET PASSWORD</h4>
+          <h4 className="reset-pasword-title title text-center m-5">RESET PASSWORD</h4>
 
           <div className="mb-3">
             <input
@@ -72,7 +72,7 @@ const ForgotPasssword = () => {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="forgot-password-reset btn btn-primary">
             RESET
           </button>
         </form>

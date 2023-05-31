@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 import useCategory from '../../hooks/useCategory';
 import { useCart } from '../../context/cart';
 import { Badge } from 'antd';
+import { ShoppingFilled } from '@ant-design/icons';
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
@@ -35,7 +36,7 @@ const Header = () => {
                 <Navbar.Collapse id="navbar-nav">
                   <Nav>
                     <LinkContainer to="/">
-                      <Nav.Link>Home </Nav.Link>
+                      <Nav.Link>Home</Nav.Link>
                     </LinkContainer>
                     <LinkContainer to="/shop">
                       <Nav.Link>Shop </Nav.Link>
@@ -89,7 +90,9 @@ const Header = () => {
                     )}
                     <Badge count={cart?.length} showZero>
                       <LinkContainer to="/cart">
-                        <Nav.Link>Cart</Nav.Link>
+                        <Nav.Link>
+                          <ShoppingFilled style={{fontSize:"1.6rem"}}/>
+                        </Nav.Link>
                       </LinkContainer>
                     </Badge>
                   </Nav>
