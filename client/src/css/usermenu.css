@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Calligraffitti&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Calligraffitti&family=Montserrat&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+.userMenu {
+  border: 1px solid black;
+}
+.userMenu .list-group-item.active {
+  background-color: #00acc6 !important;
+}
+@media screen and (max-width: 300px) {
+  .userMenu {
+    width: max-content;
+    position: relative;
+    left: -40px;
+    top: 40px;
+  }
+}

@@ -1,0 +1,8 @@
+@use 'variables';
+
+.table{
+    @media screen and (max-width:600px) {
+        width: 50%;
+        
+    }
+}

@@ -2,21 +2,27 @@ import React from 'react';
 import Layout from '../components/Layout/Layout';
 import { Button, Card, Container } from 'react-bootstrap';
 import { useSearch } from '../context/search';
-import { NavLink } from 'react-router-dom';
-
+import { NavLink, useNavigate } from 'react-router-dom';
+import '../styles/searchpage.scss';
+import { useCart } from '../context/cart';
+import { toast } from 'react-hot-toast';
 const SearchPage = () => {
-  const [values, setValues] = useSearch();
+  const [values] = useSearch();
+  const navigate = useNavigate();
+  const [cart, setCart] = useCart();
+
   return (
     <Layout>
+      <div className="background"></div>
       <Container>
         <div className="text-center">
-          <h1>Search Results</h1>
-          <h6>
+          <h1 className="search">Search Results</h1>
+          <h6 className="search">
             {values?.results.length < 1
               ? 'No Products Found'
               : `Found ${values?.results.length}`}
           </h6>
-          <div className="d-flex flex-wrap justify-content-center align-items-center">
+          <div className="cards-container">
             {values?.results.map((p) => (
               <Card className="m-2" key={p._id}>
                 <Card.Img
@@ -30,10 +36,21 @@ const SearchPage = () => {
                   <Card.Text>{p.description.substring(0, 50)}...</Card.Text>
                   <Card.Text>${p.price}</Card.Text>
                   <div className="shopBtnContainer">
-                    <Button variant="primary" className="shop-btn m-2">
+                    <Button
+                      variant="primary"
+                      className="detail m-2"
+                      onClick={() => navigate(`/product/${p.slug}`)}
+                    >
                       More Details
                     </Button>
-                    <Button variant="secondary" className="shop-btn m-2">
+                    <Button variant="secondary" className="shopBtn m-2"  onClick={() => {
+                        setCart([...cart, p]);
+                        localStorage.setItem(
+                          'cart',
+                          JSON.stringify([...cart, p])
+                        );
+                        toast.success('Item added to cart');
+                      }}>
                       Add To Card
                     </Button>
                   </div>
@@ -41,8 +58,9 @@ const SearchPage = () => {
               </Card>
             ))}
           </div>
-          <NavLink to="/shop" className="btn btn-primary m-5">GO BACK</NavLink>
-
+          <NavLink to="/shop" className="dugmic btn btn-primary m-5">
+            GO BACK
+          </NavLink>
         </div>
       </Container>
     </Layout>

@@ -1,0 +1,45 @@
+@use 'variables';
+
+.navContainer {
+  background-color: orange;
+  width: 80%;
+  border: 3px solid darkgrey;
+  border-top: none;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: 2px 2px 10px rgb(144, 136, 136);
+  img {
+    height: 5vh;
+  }
+  .navbar {
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  .navigacija {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+.ikonica {
+  vertical-align: bottom;
+  font-size: 1.2rem;
+  padding: 5px;
+}
+.dropDiv {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  position: relative;
+}
+
+.iconContainer {
+  position: absolute;
+  top: 7px;
+  left: -20px;
+  @media screen and (max-width: 992px) {
+    left: -30px;
+  }
+}

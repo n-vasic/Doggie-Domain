@@ -1,29 +1,28 @@
 import React from 'react';
 import Layout from '../components/Layout/Layout';
-import { Container } from 'react-bootstrap';
-import {NavLink} from 'react-router-dom';
 
+import '../styles/homepage.scss';
+import { Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 const HomePage = () => {
   return (
     <Layout>
-      <Container fluid className="homepageSlika">
-        <div className="homepageText">
-          <p>
-            Welcome to Doggie Domain, your ultimate online dog shop! We offer a
-            wide range of carefully curated products to keep your pup happy,
-            healthy, and stylish.
-          </p>
-          <NavLink to="/shop" className="homepageBtn">GET STARTED</NavLink>
-        </div>
-      </Container>
-      <p className='smallerScreensText'>
-            Welcome to Doggie Domain, your ultimate online dog shop! We offer a
-            wide range of carefully curated products to keep your pup happy,
-            healthy, and stylish.
-          </p>
-          <NavLink to="/shop" className="smallerScreensHomepageBtn ">GET STARTED</NavLink>
+      <div className="background"> </div>
+      <div className="mainContent">
+        <Row className="homeRow">
+          <Col className="leftCol" lg={6}>
+            <h1 className="landingText">
+              Unleash the magic of Doggie Domain, where every tail is wagging
+              and every pup's dreams come true!
+            </h1>
+            <Link to="/shop" className="gsBtn">
+              Get Started <i className="fa-solid fa-arrow-right"></i>
+            </Link>
+          </Col>
+          <Col className="rightCol" lg={6}></Col>
+        </Row>
+      </div>
     </Layout>
-    
   );
 };
 

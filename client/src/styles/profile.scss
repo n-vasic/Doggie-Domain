@@ -1,0 +1,8 @@
+@use 'variables';
+
+.profileForm{
+    padding-bottom: 5vh;
+    @media screen and (max-width:992px) {
+        width: 100%;
+    }
+}

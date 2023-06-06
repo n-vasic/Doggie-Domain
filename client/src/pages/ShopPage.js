@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout/Layout';
+import '../styles/shop.scss';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import axios from 'axios';
 import { Checkbox, Radio } from 'antd';
@@ -108,10 +109,19 @@ function ShopPage() {
   };
   return (
     <Layout>
+      <div className="background"></div>
+      <div className="shopIntro">
+        <p>
+          Welcome to Doggie Domain shop, your premier destination for all your
+          canine shopping needs! From gourmet treats to stylish accessories, we
+          have everything to keep your furry friend tail-waggingly happy. Start
+          exploring now and make your pup's dreams come true!
+        </p>
+      </div>
       <Row style={{ maxWidth: '100%' }} className="m-3">
-        <Col md={3}>
-          <SearchInput />
-          <h4 className="mb-4">Filter By Category</h4>
+        <Col md={3} className='shopColLeft'>
+          <SearchInput/>
+          <h4 className="mb-4 mt-4">Filter By Category</h4>
           <div className="d-flex flex-column">
             {categories?.map((c) => (
               <Checkbox
@@ -134,16 +144,17 @@ function ShopPage() {
             </Radio.Group>
           </div>
           <div className="d-flex flex-column">
-            <Button onClick={() => window.location.reload()}>
+            <Button className='dumgeReset m-4' onClick={() => window.location.reload()}>
               RESET FILTERS
             </Button>
           </div>
         </Col>
         <Col md={9}>
-          <h1 className="text-center">All Products</h1>
+          <h1 className="allProd text-center">All Products</h1>
           <div className="d-flex flex-wrap justify-content-center">
             {products?.map((p) => (
-              <Card className="m-2" key={p._id}>
+              <div className='cards-container'key={p._id}>
+              <Card className="kartice m-2" >
                 <Card.Img
                   className="card-img"
                   variant="top"
@@ -156,15 +167,14 @@ function ShopPage() {
                   <Card.Text>${p.price}</Card.Text>
                   <div className="shopBtnContainer">
                     <Button
-                      variant="primary"
-                      className="shop-btn m-2"
+                      className="detail m-2"
                       onClick={() => navigate(`/product/${p.slug}`)}
                     >
                       More Details
                     </Button>
                     <Button
                       variant="secondary"
-                      className="shop-btn m-2"
+                      className="shopBtn  m-2"
                       onClick={() => {
                         setCart([...cart, p]);
                         localStorage.setItem(
@@ -179,11 +189,13 @@ function ShopPage() {
                   </div>
                 </Card.Body>
               </Card>
+              </div>
             ))}
           </div>
-          <div className="m-2 p-3">
+          <div className="dugmDonje m-2 p-3">
             {products && products.length < total && (
               <Button
+              className='loadMoreBtn'
                 onClick={(e) => {
                   e.preventDefault();
                   setPage(page + 1);

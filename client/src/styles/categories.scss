@@ -1,0 +1,32 @@
+@use 'variables';
+
+.katContainer{
+    width: 100%;
+}
+.katRow{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .kategorije{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20vh;
+        width: 100%;
+      
+    }
+}
+.katBtn{
+    height: 100%;
+    width: 100%;
+    background-color: variables.$thirdColor;
+    border: 1px solid black;
+    border-radius: 50px;
+    font-size: 2rem;
+&:hover{
+    background-color: variables.$mainColor;
+}   
+}

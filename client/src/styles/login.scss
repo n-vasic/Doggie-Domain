@@ -1,0 +1,68 @@
+@use 'variables';
+
+.wrapper {
+  background-color: variables.$thirdColor;
+  margin: 10vh;
+  border-radius: 50px;
+  border: 1px solid black;
+
+}
+.regisLeft {
+  height: 80vh;
+  
+  @include variables.flex-row-center;
+  font-family: 'Amatic SC', cursive;
+  font-size: 2rem;
+  border-right: 1px solid black;
+  @media screen and (max-width: 992px) {
+    border-right: none;
+    border-bottom: 1px solid black;
+    font-size: 1.5rem;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 1.1rem;
+  }
+}
+.register {
+  @include variables.flex-column-center;
+  @media screen and (max-width: 992px) {
+    padding-bottom: 5vh;
+  }
+  form {
+    width: 70%;
+
+    input {
+      border: 2px solid black;
+
+      @media screen and (max-width: 400px) {
+        font-size: 0.5rem;
+      }
+    }
+  }
+  .naslov {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    @media screen and (max-width: 992px) {
+      margin-top: 5vh;
+    }
+  }
+  .dugmic2 {
+    width: 100%;
+    background-color: variables.$mainColor;
+    border: 1px solid black;
+    color: black;
+    &:hover {
+      box-shadow: 2px 2px 10px variables.$mainColor;
+    }
+  }
+  @media screen and (max-width: 992px) {
+    font-size: 1.5rem;
+  }
+}
+.dugmic1 {
+    width: 100%;
+    border: 1px solid black;
+  @media screen and (max-width: 992px) {
+    font-size: 0.6rem;
+  }
+}

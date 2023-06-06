@@ -1,0 +1,11 @@
+@use 'variables';
+
+.search {
+    margin-top: 5vh;
+  font-family: 'Montserrat', sans-serif;
+}
+.dugmic {
+  background-color: variables.$thirdColor;
+  border: 1px solid black;
+  color: black;
+}
