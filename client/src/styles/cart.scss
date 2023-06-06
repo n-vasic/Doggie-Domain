@@ -1,0 +1,38 @@
+@use 'variables';
+
+.helloText {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+}
+.prodPic {
+  height: 225px;
+  width: 225px;
+}
+.colProd {
+  display: flex;
+  justify-content: center;
+  height: 35vh;
+  align-items: center;
+}
+.cartSummary {
+  background-color: variables.$thirdColor;
+  border: 1px solid black;
+  border-radius: 50px;
+  padding: 5vh;
+  height: max-content;
+  margin: 0 auto;
+  @media screen and (max-width: 600px) {
+    border-radius: 0px;
+  }
+  button {
+    margin: 3vh;
+  }
+}
+.wrapAround {
+  @media screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

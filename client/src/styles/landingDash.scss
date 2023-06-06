@@ -1,0 +1,18 @@
+@use 'variables';
+
+.landingDash {
+  font-family: 'Montserrat', sans-serif;
+  height: 40vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+  margin: 5vh;
+  padding: 2vh;
+  h3 {
+    font-weight: bolder;
+    border-bottom: 1px solid black;
+    @media screen and (max-width: 700px) {
+      font-size: 1rem;
+    }
+  }
+}

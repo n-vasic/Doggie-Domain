@@ -14,41 +14,45 @@ html {
   height: 100%;
 }
 
-.slikica {
+.helloText {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bolder;
+}
+
+.prodPic {
+  height: 225px;
   width: 225px;
 }
 
-.table {
-  text-align: center;
+.colProd {
+  display: flex;
+  justify-content: center;
+  height: 35vh;
+  align-items: center;
 }
-.table thead,
-.table tbody {
-  font-size: 1rem;
+
+.cartSummary {
+  background-color: #ffcc44;
+  border: 1px solid black;
+  border-radius: 50px;
+  padding: 5vh;
+  height: max-content;
+  margin: 0 auto;
 }
-@media screen and (max-width: 992px) {
-  .table thead,
-  .table tbody {
-    font-size: 0.8rem;
+@media screen and (max-width: 600px) {
+  .cartSummary {
+    border-radius: 0px;
   }
 }
-@media screen and (max-width: 300px) {
-  .table thead,
-  .table tbody {
-    font-size: 0.3rem;
-  }
+.cartSummary button {
+  margin: 3vh;
 }
 
 @media screen and (max-width: 600px) {
-  .opis {
+  .wrapAround {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
   }
-}
-
-.custom {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }

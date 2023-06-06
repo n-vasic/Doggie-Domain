@@ -5,6 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import { useCart } from '../context/cart';
 import { toast } from 'react-hot-toast';
+import '../styles/prodDetail.scss';
 
 const ProductDetails = () => {
   const [cart, setCart] = useCart();
@@ -15,9 +16,12 @@ const ProductDetails = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
 
   //initalp details
-  useEffect(() => {
-    if (params?.slug) getProduct();
-  }, [params?.slug]);
+  useEffect(
+    () => {
+      if (params?.slug) getProduct();
+    }, //eslint-disable-next-line
+    [params?.slug]
+  );
   //getProduct
   const getProduct = async () => {
     try {
@@ -53,52 +57,71 @@ const ProductDetails = () => {
               className="d-flex justify-content-center"
             />
           </Col>
-          <Col md={8}>
+          <Col md={8} className="desc">
             <h1 className="text-center">Product Details</h1>
             <h6>Name: {product.name}</h6>
             <h6>Description: {product.description}</h6>
             <h6>Price: ${product.price}</h6>
             <h6>Category: {product?.category?.name}</h6>
-            <Button className="btn-secondary ms-1">ADD TO CART</Button>
+            <Button
+              className="shopBtn btn-secondary mt-3"
+              onClick={() => {
+                setCart([...cart, product]);
+                localStorage.setItem(
+                  'cart',
+                  JSON.stringify([...cart, product])
+                );
+                toast.success('Item added to cart');
+              }}
+            >
+              ADD TO CART
+            </Button>
           </Col>
         </Row>
       </Container>
       <hr />
-      <h6 className='text-center '>Similar Products</h6>
+      <h6 className="text-center ">Similar Products</h6>
 
-      <Container className='d-flex'>
+      <Container className="d-flex">
         {relatedProducts.length < 1 && (
           <p className="text-center">No Similar Products found</p>
         )}
         <Row className="d-flex flex-wrap">
           {relatedProducts?.map((p) => (
             <Col key={p._id} className="m-2">
-              <Card style={{ width: '18rem' }}>
-                <Card.Img
-                  src={`/api/dd/product/product-photo/${p._id}`}
-                  alt={p.name}
-                  className="card-img-top"
-                />
-                <Card.Body>
-                  <Card.Title>{p.name}</Card.Title>
-                  <Card.Text>{p.description.substring(0, 30)}...</Card.Text>
-                  <Card.Text>$ {p.price}</Card.Text>
-                  <Button
-                    className="btn-primary m-1"
-                    onClick={() => navigate(`/product/${p.slug}`)}
-                  >
-                    More Details
-                  </Button>
-                  <Button className="btn-secondary m-1"  onClick={() => {
+              <div className="cards-container">
+                <Card style={{ width: '18rem' }}>
+                  <Card.Img
+                    src={`/api/dd/product/product-photo/${p._id}`}
+                    alt={p.name}
+                    className="card-img-top"
+                  />
+                  <Card.Body>
+                    <Card.Title>{p.name}</Card.Title>
+                    <Card.Text>{p.description.substring(0, 30)}...</Card.Text>
+                    <Card.Text>$ {p.price}</Card.Text>
+                    <Button
+                      className="detail btn-primary m-1"
+                      onClick={() => navigate(`/product/${p.slug}`)}
+                    >
+                      More Details
+                    </Button>
+                    <Button
+                      className="shopBtn btn-secondary m-1"
+                      onClick={() => {
                         setCart([...cart, p]);
                         localStorage.setItem(
                           'cart',
                           JSON.stringify([...cart, p])
                         );
                         toast.success('Item added to cart');
-                      }}>ADD TO CART</Button>
-                </Card.Body>
-              </Card>
+                      }}
+                    >
+                      ADD TO CART
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </div>
             </Col>
           ))}
         </Row>

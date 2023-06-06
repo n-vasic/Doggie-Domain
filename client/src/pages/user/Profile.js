@@ -56,7 +56,7 @@ const Profile = () => {
     <Layout>
       <div className="background"></div>
       <Container fluid>
-        <Row className="wrapper" style={{ maxWidth: '100%' }}>
+        <Row className="userDash" style={{ maxWidth: '100%' }}>
           <Col md={3}>
             <UserMenu />
           </Col>
