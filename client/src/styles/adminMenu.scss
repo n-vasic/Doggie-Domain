@@ -1,0 +1,12 @@
+@use 'variables';
+
+
+.adminMenu{
+    background-color: variables.$thirdColor;
+    border: 1px solid black;
+}
+
+
+.bordIV{
+    border-radius: 15px;
+}

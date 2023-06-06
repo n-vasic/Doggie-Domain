@@ -1,0 +1,11 @@
+@use 'variables';
+
+.prodForm{
+    width: 60%;
+}
+.prodFormWrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

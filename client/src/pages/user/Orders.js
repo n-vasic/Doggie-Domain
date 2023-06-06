@@ -23,6 +23,8 @@ const Orders = () => {
   }, [auth?.token]);
   return (
     <Layout>
+            <div className="background"></div>
+
       <div className="container-fluid dashboard">
         <div className="userDash row" style={{ maxWidth: '100%' }}>
           <div className="col-md-3">

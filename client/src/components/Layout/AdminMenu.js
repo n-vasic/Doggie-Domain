@@ -1,16 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import '../../styles/adminMenu.scss';
 const AdminMenu = () => {
   return (
     <>
-      <div className="text-center p-3">
-        <div className="list-group">
+      <div className="adminMenu m-5 text-center p-3">
+        <div className="userMenu list-group">
           <h4>Admin Panel</h4>
           <NavLink
             to="/dashboard/admin/create-category"
             className="list-group-item list-group-item-action"
-            
           >
             Create Category
           </NavLink>
@@ -32,7 +31,6 @@ const AdminMenu = () => {
           >
             Users
           </NavLink>
-         
         </div>
       </div>
     </>

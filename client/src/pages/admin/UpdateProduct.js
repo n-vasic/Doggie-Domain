@@ -105,13 +105,14 @@ const UpdateProduct = () => {
   };
   return (
     <Layout>
+
       <Row style={{ width: '100%' }}>
         <Col md={3}>
           <AdminMenu />
         </Col>
-        <Col md={9} className="p-3">
+        <Col md={9} className="prodFormWrap p-3">
           <h1 className="text-center">Update Product</h1>
-          <div className="m-1 ">
+          <div className="prodForm m-1 ">
             <Select
               bordered={false}
               placeholder="Select a category"

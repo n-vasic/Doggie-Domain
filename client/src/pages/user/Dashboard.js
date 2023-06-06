@@ -8,8 +8,9 @@ const Dashboard = () => {
   const [auth] = useAuth();
   return (
     <Layout>
-      <Container >
-        <Row className='userDash'>
+      <div className="background"></div>
+      <Container>
+        <Row className="userDash">
           <Col md={3}>
             <UserMenu />
           </Col>

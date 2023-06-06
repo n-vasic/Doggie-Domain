@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import axios from 'axios';
 import { Select } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import '../../styles/createProd.scss';
 const { Option } = Select;
 
 const CreateProduct = () => {
@@ -65,13 +66,14 @@ const CreateProduct = () => {
 
   return (
     <Layout>
+
       <Row style={{ width: '100%' }}>
         <Col md={3}>
           <AdminMenu />
         </Col>
-        <Col md={9} className="p-3">
+        <Col md={9} className="prodFormWrap p-3">
           <h1 className="text-center">Create Product</h1>
-          <div className="m-1 ">
+          <div className="prodForm m-1 ">
             <Select
               bordered={false}
               placeholder="Select a category"

@@ -90,13 +90,13 @@ const CreateCategory = () => {
   };
   return (
     <Layout>
-      
+
       <Row style={{ width: '100%' }}>
         <Col md={3}>
           <AdminMenu></AdminMenu>
         </Col>
-        <Col md={9} className='p-3'>
-        <h1 className="text-center">Manage categories</h1>
+        <Col md={9} className="p-3 " >
+          <h1 className="text-center">Manage categories</h1>
           <div>
             <CategoryForm
               handleSubmit={handleSubmit}
@@ -105,47 +105,45 @@ const CreateCategory = () => {
             />
           </div>
           <div>
-          <table className="table">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Actions</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    {categories?.map((c) => (
-      <tr key={c._id}>
-        <td>{c.name}</td>
-        <td className="d-flex justify-content-between align-items-center">
-          <div>
-            <button
-              className="btn btn-primary"
-              onClick={() => {
-                setVisible(true);
-                setUpdatedName(c.name);
-                setSelected(c);
-              }}
-            >
-              Edit
-            </button>
-          </div>
-          <div>
-            <button
-              className="btn btn-danger"
-              onClick={() => {
-                handleDelete(c._id);
-              }}
-            >
-              Delete
-            </button>
-          </div>
-        </td>
-      </tr>
-    ))}
-  </tbody>
-</table>
-
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {categories?.map((c) => (
+                  <tr key={c._id}>
+                    <td>{c.name}</td>
+                    <td className="d-flex justify-content-between align-items-center">
+                      <div>
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => {
+                            setVisible(true);
+                            setUpdatedName(c.name);
+                            setSelected(c);
+                          }}
+                        >
+                          Edit
+                        </button>
+                      </div>
+                      <div>
+                        <button
+                          className="btn btn-danger"
+                          onClick={() => {
+                            handleDelete(c._id);
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
           <Modal
             onCancel={() => setVisible(false)}

@@ -6,7 +6,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-
+import '../../styles/products.scss';
 const Products = () => {
   const [products, setProducts] = useState([]);
 
@@ -32,16 +32,16 @@ const Products = () => {
         <Col md={3}>
           <AdminMenu />
         </Col>
-        <Col md={9}>
+        <Col md={9} className="colwrap">
           <h1 className="text-center mb-4">All Products List</h1>
-          <div className="d-flex flex-wrap">
+          <div className="d-grid products-container">
             {products?.map((p) => (
               <Link
                 key={p._id}
                 to={`/dashboard/admin/product/${p.slug}`}
                 className="text-dark text-decoration-none"
               >
-                <Card className="m-2" key={p._id}>
+                <Card className="m-2 product-card" key={p._id}>
                   <Card.Img
                     variant="top"
                     src={`/api/dd/product/product-photo/${p._id}`}
@@ -49,7 +49,7 @@ const Products = () => {
                   />
                   <Card.Body>
                     <Card.Title>{p.name}</Card.Title>
-                    <Card.Text>{p.description}</Card.Text>
+                    <Card.Text>{p.description.substring(0, 30)}</Card.Text>
                   </Card.Body>
                 </Card>
               </Link>
