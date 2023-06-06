@@ -5,7 +5,9 @@ import '../styles/policy.scss';
 const PolicyPage = () => {
   return (
     <Layout>
-      <Container className="policy">
+      <Container fluid className="policy">
+      <div className="background"></div>
+
         <div className="intro">
           <h1>Doggie Domain - Online Shop Policy</h1>
           <h3>

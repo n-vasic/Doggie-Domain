@@ -39,7 +39,7 @@ const ContactPage = () => {
           <input type="email" name="user_email" />
           <label>Message</label>
           <textarea name="message" />
-          <input type="submit" value="Send" />
+          <input className='detail m-1' type="submit" value="Send" />
         </form>
       </div>
     </Layout>

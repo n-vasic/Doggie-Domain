@@ -62,6 +62,7 @@ function ShopPage() {
   useEffect(() => {
     if (page === 1) return;
     loadMore();
+    //eslint-disable-next-line
   }, [page]);
 
   //LOAD MORE PRODUCTS
@@ -88,11 +89,13 @@ function ShopPage() {
     setChecked(all);
   };
   useEffect(() => {
-    if (!checked.length || !radio.length) getAllProducts();
+    if (!checked.length || !radio.length) getAllProducts();    
+    //eslint-disable-next-line
   }, [checked.length, radio.length]);
 
   useEffect(() => {
     if (checked.length || radio.length) filteredProduct();
+        //eslint-disable-next-line
   }, [checked, radio]);
 
   //GET FILTERED PRODUCTS

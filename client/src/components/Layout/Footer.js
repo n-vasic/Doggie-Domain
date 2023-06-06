@@ -15,11 +15,7 @@ const Footer = () => {
               <li className="nav-item">
                 <span className="footer-title">Company</span>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/#">
-                  About us
-                </a>
-              </li>
+             
               <li className="nav-item">
                 <a className="nav-link" href="/">
                   Home

@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import toast from "react-hot-toast";
-import AdminMenu from "../../components/Layout/AdminMenu";
-import Layout from "../../components/Layout/Layout";
-import { useAuth } from "../../context/auth";
-import moment from "moment";
-import { Select } from "antd";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import AdminMenu from '../../components/Layout/AdminMenu';
+import Layout from '../../components/Layout/Layout';
+import { useAuth } from '../../context/auth';
+import moment from 'moment';
+import { Select } from 'antd';
 const { Option } = Select;
 
 const AdminOrders = () => {
-  const [status, setStatus] = useState([
-    "Not Process",
-    "Processing",
-    "Shipped",
-    "deliverd",
-    "cancel",
+  const [status] = useState([
+    'Not Process',
+    'Processing',
+    'Shipped',
+    'deliverd',
+    'cancel',
   ]);
-  const [changeStatus, setCHangeStatus] = useState("");
   const [orders, setOrders] = useState([]);
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
   const getOrders = async () => {
     try {
-      const { data } = await axios.get("/api/dd/auth/all-orders");
+      const { data } = await axios.get('/api/dd/auth/all-orders');
       setOrders(data);
     } catch (error) {
       console.log(error);
@@ -34,6 +32,7 @@ const AdminOrders = () => {
 
   const handleChange = async (orderId, value) => {
     try {
+      //eslint-disable-next-line
       const { data } = await axios.put(`/api/dd/auth/order-status/${orderId}`, {
         status: value,
       });
@@ -43,8 +42,8 @@ const AdminOrders = () => {
     }
   };
   return (
-    <Layout title={"All Orders Data"}>
-      <div className="row dashboard" style={{maxWidth:"100%"}}>
+    <Layout title={'All Orders Data'}>
+      <div className="row dashboard" style={{ maxWidth: '100%' }}>
         <div className="col-md-3">
           <AdminMenu />
         </div>
@@ -82,20 +81,22 @@ const AdminOrders = () => {
                       </td>
                       <td>{o?.buyer?.name}</td>
                       <td>{moment(o?.createAt).fromNow()}</td>
-                      <td>{o?.payment.success ? "Success" : "Failed"}</td>
+                      <td>{o?.payment.success ? 'Success' : 'Failed'}</td>
                       <td>{o?.products?.length}</td>
                     </tr>
                   </tbody>
                 </table>
                 <div className="opis container">
                   {o?.products?.map((p, j) => (
-                    <div className="row mb-2 p-3 card flex-row"  key={`${p._id}-${j}`}>
+                    <div
+                      className="row mb-2 p-3 card flex-row"
+                      key={`${p._id}-${j}`}
+                    >
                       <div className="col-md-4">
                         <img
                           src={`/api/dd/product/product-photo/${p._id}`}
                           className="slikica card-img-top"
                           alt={p.name}
-                          
                         />
                       </div>
                       <div className="col-md-8">
