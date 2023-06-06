@@ -2,6 +2,7 @@ import userModel from '../models/userModel.js';
 import orderModel from '../models/orderModel.js';
 import { comparePassword, hashPassword } from '../helpers/authHelper.js';
 import JWT from 'jsonwebtoken';
+
 export const registerController = async (req, res) => {
   try {
     const { name, email, password, phone, address, answer } = req.body;
@@ -15,6 +16,11 @@ export const registerController = async (req, res) => {
     }
     if (!password) {
       return res.send({ message: 'Password is required' });
+    } else {
+      const passwordRegex = /^.{6,}$/;
+      if (!passwordRegex.test(password)) {
+        return res.send({ message: 'Password must be at least 6 characters' });
+      }
     }
     if (!phone) {
       return res.send({ message: 'Phone is required' });
