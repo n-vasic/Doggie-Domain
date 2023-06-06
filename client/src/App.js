@@ -14,7 +14,6 @@ import AdminRoute from './components/Routes/AdminRoute';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import CreateCategory from './pages/admin/CreateCategory';
 import CreateProduct from './pages/admin/CreateProduct';
-import Users from './pages/admin/Users';
 import Orders from './pages/user/Orders';
 import Profile from './pages/user/Profile';
 import Products from './pages/admin/Products';
@@ -24,6 +23,8 @@ import ProductDetails from './pages/ProductDetails';
 import Categories from './pages/Categories';
 import CategoryProduct from './pages/CategoryProduct';
 import CartPage from './pages/CartPage';
+import AdminOrders from './pages/admin/AdminOrders';
+import Terms from './pages/Terms';
 
 function App() {
   return (
@@ -49,9 +50,10 @@ function App() {
           <Route path="admin/create-product" element={<CreateProduct />} />
           <Route path="admin/products" element={<Products />} />
           <Route path="admin/product/:slug" element={<UpdateProduct />} />
-          <Route path="admin/users" element={<Users />} />
+          <Route path="admin/orders" element={<AdminOrders />} />
         </Route>
         <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/terms" element={<Terms />}></Route>
         <Route path="/about" element={<AboutPage />}></Route>
         <Route path="/contact" element={<ContactPage />}></Route>
         <Route path="/policy" element={<PolicyPage />}></Route>

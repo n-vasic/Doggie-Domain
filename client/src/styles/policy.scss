@@ -1,0 +1,13 @@
+@use 'variables';
+
+.policy {
+  font-family: 'Montserrat', sans-serif;
+ 
+}
+.intro {
+    background-color: variables.$thirdColor;
+    padding: 10vh;
+    margin: 10vh;
+    border: 1px solid black;
+    border-radius: 50px;
+  }

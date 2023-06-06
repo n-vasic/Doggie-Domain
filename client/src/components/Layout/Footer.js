@@ -50,7 +50,7 @@ const Footer = () => {
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="/#">
+                <a className="nav-link" href="/contact">
                   <i className="fas fa-envelope" />
                   Contact us
                 </a>
@@ -98,7 +98,7 @@ const Footer = () => {
                 <a href="/policy">Privacy Policy</a>
               </li>
               <li className="list-inline-item">
-                <a href="/#">Terms of Use</a>
+                <a href="/terms">Terms of Use</a>
               </li>
             </ul>
           </div>
